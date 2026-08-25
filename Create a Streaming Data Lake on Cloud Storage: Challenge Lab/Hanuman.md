@@ -10,5 +10,7 @@
 
 # Run In cloud Shell
 ```
-
+curl -LO https://raw.githubusercontent.com/manavyugaitech/Welcome/main/Create%20a%20Streaming%20Data%20Lake%20on%20Cloud%20Storage%3A%20Challenge%20Lab/Hanuman.sh
+sudo chmod +x Hanuman.sh
+./Hanuman.sh
 ```
