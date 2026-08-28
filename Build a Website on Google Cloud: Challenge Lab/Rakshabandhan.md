@@ -12,6 +12,7 @@
 ### Run the following Commands in CloudShell
 
 ```
-
+curl -LO https://raw.githubusercontent.com/manavyugaitech/Welcome/main/Build%20a%20Website%20on%20Google%20Cloud%3A%20Challenge%20Lab/Rakshabandhan.sh
+sudo chmod +x Rakshabandhan.sh
+./Rakshabandhan.sh
 ```
-
