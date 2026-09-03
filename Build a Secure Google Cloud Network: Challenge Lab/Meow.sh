@@ -82,12 +82,10 @@ gcloud compute ssh juice-shop --internal-ip --zone=$ZONE --quiet
 
 EOF_END
 
-echo "${BLUE}▶ Copying script to bastion host...${RESET}"
 gcloud compute scp prepare_disk.sh bastion:/tmp --project=$DEVSHELL_PROJECT_ID --zone=$ZONE --quiet
 
-echo "${BLUE}▶ Executing configuration script on bastion host...${RESET}"
 gcloud compute ssh bastion --project=$DEVSHELL_PROJECT_ID --zone=$ZONE --quiet --command="bash /tmp/prepare_disk.sh"
 
-echo -e "\n${BG_GREEN}${BLACK}${BOLD} SUCCESS ${RESET} ${GREEN}${BOLD}Congratulations for Completing the Lab !!!${RESET}\n"
+echo "${RED}${BOLD}Congratulations${RESET}" "${WHITE}${BOLD}for${RESET}" "${GREEN}${BOLD}Completing the Lab !!!${RESET}"
 
 #-----------------------------------------------------end----------------------------------------------------------#
