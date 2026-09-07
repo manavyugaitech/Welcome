@@ -16,3 +16,30 @@ curl -LO https://raw.githubusercontent.com/manavyugaitech/Welcome/main/Build%20a
 sudo chmod +x Meow.sh
 ./Meow.sh
 ```
+## IF YOU ARE NOT GETTING SCORE IN 5th Task RUN THIS(CHANGE Your INT_NET_TAG)
+# 👇👇👇👇👇
+```
+INT_NET_TAG="YOUR_INET_TAG"
+
+ZONE=$(gcloud compute instances list \
+  --filter="name=bastion" \
+  --format="value(zone)" | head -n 1)
+
+MGMT_CIDR=$(gcloud compute networks subnets list \
+  --filter="name=acme-mgmt-subnet" \
+  --format="value(ipCidrRange)" | head -n 1)
+
+gcloud compute firewall-rules delete internal-ssh-ingress --quiet 2>/dev/null
+
+gcloud compute firewall-rules create internal-ssh-ingress \
+  --network=acme-vpc \
+  --allow=tcp:22 \
+  --source-ranges="$MGMT_CIDR" \
+  --target-tags="$INT_NET_TAG"
+
+gcloud compute instances add-tags juice-shop \
+  --tags="$INT_NET_TAG" \
+  --zone="$ZONE"
+
+```
+
