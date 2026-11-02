@@ -136,13 +136,16 @@ WITH us_cases_by_date AS (
     AND date BETWEEN '2020-03-22' AND '2020-04-20'
   GROUP BY
     date
+  ORDER BY
+    date ASC
 ),
 
 us_previous_day_comparison AS (
   SELECT
     date,
     cases,
-    LAG(cases) OVER (ORDER BY date) AS previous_day
+    LAG(cases) OVER(ORDER BY date) AS previous_day,
+    (cases - LAG(cases) OVER(ORDER BY date)) * 100 / LAG(cases) OVER(ORDER BY date) AS percentage_increase
   FROM
     us_cases_by_date
 )
@@ -151,14 +154,13 @@ SELECT
   date AS Date,
   cases AS Confirmed_Cases_On_Day,
   previous_day AS Confirmed_Cases_Previous_Day,
-  ((cases - previous_day) / previous_day) * 100
-    AS Percentage_Increase_In_Cases
+  percentage_increase AS Percentage_Increase_In_Cases
 FROM
   us_previous_day_comparison
 WHERE
-  ((cases - previous_day) / previous_day) * 100 > 20
+  percentage_increase > 10
 ORDER BY
-  date;
+  Date;
 ```
 
 # Task 8. Recovery rate
